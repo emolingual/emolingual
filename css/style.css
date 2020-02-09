@@ -521,7 +521,7 @@ a.card:hover{
 .top{
   width: 100%;
   height: 750px;
-  background-image: url(/image/emolingual-top-c.png);
+  background-image: url(./image/emolingual-top-c.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
