@@ -4,22 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Sample_GoogleMap</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYQcZKwx3Nb-LRLdd_aparYD4wAb7DhYQ&callback=initMap" type="text/javascript"></script>
-    <script>
-        function initMap(){
-            var mapPosition = new google.maps.LatLng(35.6882495, 139.6856557);//緯度経度
-            var map = new google.maps.Map(document.getElementById('gmap'),{
-                zoom: 17,
-                center: mapPosition
-            });
 
-            var marker = new google.maps.Marker({
-                position: mapPosition,
-                map: map
-            });
-        }
-    </script>
-    
     <style>
        html { height: 100% }
        body { height: 100% }
@@ -29,7 +14,18 @@
 </head>
 
 <body>
-    <div id="gmap"></div>
+    <div id="map" style="height: 100vh"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10, // デフォルトのズームレベル
+          center: {lat: 35, lng: 135}, // 中心の緯度・経度
+          mapTypeId: 'terrain' // ここを変える
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYQcZKwx3Nb-LRLdd_aparYD4wAb7DhYQ&callback=initMap"
+    async defer></script>
     
     
 
