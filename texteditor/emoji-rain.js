@@ -33,6 +33,10 @@ var val = 0;
 
 
 function setup() {
+  //スマホのドラッグ対策
+  window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
+  window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
+
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0);
   canvas.style('z-index','-1');//canvasを後ろに移動する
