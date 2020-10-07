@@ -41,6 +41,7 @@ function setup() {
   canvas.position(0,0);
   canvas.style('z-index','-1');//canvasを後ろに移動する
   frameRate(60);
+  
 
   w = 50;
   h = 50;

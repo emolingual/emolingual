@@ -1,0 +1,38 @@
+[
+  {
+    "suggest": [
+      {
+        "emoji": "U+1F600",
+        "similality": 0.95
+      },
+      {
+        "emoji": "U+1F603",
+        "similality": 0.9
+      },
+      {
+        "emoji": "U+1F604",
+        "similality": 0.87
+      }
+    ]
+  },
+  {
+    "suggest": [
+      {
+        "emoji": "U+1F5FF",
+        "similality": 0.92
+      }
+    ]
+  },
+  {
+    "suggest": [
+      {
+        "emoji": "U+1F602",
+        "similality": 0.95
+      },
+      {
+        "emoji": "U+1F614",
+        "similality": 0.82
+      }
+    ]
+  }
+]
