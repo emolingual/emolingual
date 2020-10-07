@@ -1,0 +1,119 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Sawarabi+Mincho&display=swap');
+
+*,*:before,*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { 
+  background: #fff;
+  color: #383838;
+  height: 100%;
+  font-size:100%;
+}
+
+html.night{
+  background: #383838;
+  color: #ccc;
+}
+
+body{
+  height: 100%;
+  font-family: "Roboto Mono", monospace,'Noto Sans JP', sans-serif;;
+  font-size: 1em;
+  line-height: 1.7;
+  padding: 1em 0;
+    /*Fix for FF on Mac: Font rendering a bit bolder than it should*/
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul{
+  list-style: none;
+}
+
+::-moz-selection{
+  background: #ddd;
+}
+
+::selection{
+  background:#ddd;
+}
+
+html.night ::-moz-selection{
+  background: #111;
+}
+
+html.night ::selection{
+  background: #111;
+}
+
+button, input[type="text"], textarea{
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: transparent;
+}
+
+input[type="text"], textarea{
+  display: block;
+  width: 100%;
+  padding: .5em;
+}
+
+::-webkit-input-placeholder {
+  color: #999;
+}
+:-moz-placeholder {
+  color: #999;
+}
+::-moz-placeholder {
+  color: #999;
+}
+:-ms-input-placeholder {
+  color: #999;
+}
+
+textarea{
+    font-size: 3em;
+    resize: none;
+    background: transparent;
+    height: 100%;
+    line-height: 1.9em;
+    padding-top: 4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 2.5em;
+  }
+
+  @media(min-width:48em){
+    textarea {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+  
+  @media(min-width:57.5em){
+    textarea {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+  
+  @media(min-width:64em) {
+    textarea {
+      padding-left: 10em;
+      padding-right: 10em;
+    }
+  }
+  
+  @media(min-width:75em) {
+    textarea {
+      padding-left: 10em;
+      padding-right: 10em;
+    }
+  }
