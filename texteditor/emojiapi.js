@@ -1,9 +1,17 @@
 // const url = 'https://randomuser.me/api/';
 const url = 'https://rck1sqggle.execute-api.us-east-2.amazonaws.com/beta?key=モアイ';
 // const url = 'https://n6y4rlv30a.execute-api.us-east-2.amazonaws.com/default/returnEmoji';
+getFromApi();
 
-
-
+function getFromApi() {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.onload = function() {
+  // レスポンスが返ってきた時の処理
+    console.log(request['response']);
+  }
+  request.send();
+}
 
 let simpleData = {emoji: '1F5FF', similality: 0.92};
 // JSON 形式への変換
@@ -25,7 +33,7 @@ let simpleDataJSON = JSON.stringify(simpleData);
 function getFile($this){
     var input_message = document.getElementById("filecontent").value;
     console.log(input_message);
-    
+
     // JSON 形式からの復元
 let simpleDataParsed = JSON.parse(simpleDataJSON);
 console.log(simpleDataParsed.emoji);
@@ -62,7 +70,7 @@ console.log(emojinum);
 // request.open('GET', "https://n6y4rlv30a.execute-api.us-east-2.amazonaws.com/default/returnEmoji", true);
 // request.responseType = 'json';
 
-// // レスポンスが返ってきた時の処理を記述 
+// // レスポンスが返ってきた時の処理を記述
 // request.onload = function () {
 //   // レスポンスが返ってきた時の処理
 //   var data = this.response;
