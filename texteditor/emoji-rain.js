@@ -56,6 +56,7 @@ function setup() {
     dragging[i]=false;
     drop[i] = false;
     
+  emojiCode[i]=0;
   }
   
   emojiparameter();
@@ -72,7 +73,7 @@ function draw() {
 //   text("emoji-drag", 8,35);
 // check();
   update();
-  
+  // getFile();
   // display();
 }
 
@@ -189,16 +190,18 @@ function display(){
 function keyPressed(){
   // val = Math.random() * 11;　//0~11がでる
   emojiparameter();
-  print("Pressed");
+  // print("Pressed");
+  // getFile();
+  
 }
 
 
 function emojiparameter(){
-  val = Math.random() * 11;　//0~11がでる
-print(val);
+  // val = Math.random() * 11;　//0~11がでる
+// print(val);
   for(var i=0;i < num;i++){
   emojiCode[i] = random(10) > val ? floor(random(128512, 128592)) : floor(random(127744, 128318));
-    // emojiCode[i]=128511;
+  // emojiCode[i]=emojinum;
   emoji[i] = String.fromCodePoint(emojiCode[i]);
     
   }

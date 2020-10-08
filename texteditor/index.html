@@ -14,12 +14,13 @@
     <!-- <script src="test.js"></script> -->
     <script src="emoji-rain.js"></script>
     <script src="emojiapi.js"></script>
+    <!-- <script src="makejson.js"></script> -->
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div draggable="false">
-        <textarea id="filecontent" placeholder="Start Writing with..." spellcheck="false"></textarea>
+        <textarea id="filecontent" onInput = "getFile(this)" placeholder="Start Writing with..." spellcheck="false"></textarea>
     </div>
 </body>
 </html>
