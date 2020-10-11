@@ -24,6 +24,7 @@ var emojiCode=[];
 var emoji=[];
 let pre_selectemoji;
 let selectemoji;
+let emojinum=0;
 
 var num = 30;
 
@@ -111,16 +112,10 @@ function update(){
   + area.value.substr(area.selectionStart);
   pre_selectemoji = selectemoji;
   selectemoji = "";
-    drop[i] = false;
-    
+    drop[i] = false;    
   }
-  
-
-
-
     display();
 }
-  // display();
 }
 
 function mousePressed(){
@@ -166,15 +161,6 @@ function mouseReleased() {
   for(var i=0;i < num;i++){
     dragging[i] = false;
     drop[i] = true;
-    
-      // //　触った絵文字をテキストボックスに追加していく
-      //   var area = document.getElementById("filecontent");
-      //   // var emojitext = String.fromCodePoint(emojiCode[i]);
-      //   //カーソルの位置を基準に前後を分割して、その間に文字列を挿入
-      //   area.value = area.value.substr(0, area.selectionStart)
-			// + String.fromCodePoint(emojiCode[i])
-			// + area.value.substr(area.selectionStart);
-    
   }
 }
 
@@ -196,17 +182,47 @@ function keyPressed(){
 }
 
 
+
+
 function emojiparameter(){
   // val = Math.random() * 11;　//0~11がでる
 // print(val);
   for(var i=0;i < num;i++){
-  emojiCode[i] = random(10) > val ? floor(random(128512, 128592)) : floor(random(127744, 128318));
-  // emojiCode[i]=emojinum;
+  // emojiCode[i] = random(10) > val ? floor(random(128512, 128592)) : floor(random(127744, 128318));
+  emojiCode[i]=emojinum;
   emoji[i] = String.fromCodePoint(emojiCode[i]);
     
   }
 }
   
+//APIの処理はこちら
+const url = 'https://rck1sqggle.execute-api.us-east-2.amazonaws.com/beta?key=モアイ';
+
+function getFile($this){
+  var input_message = document.getElementById("filecontent").value;
+  console.log(input_message);
+  getFromApi();
+}
+
+
+
+function getFromApi() {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.onload = function() {
+  // レスポンスが返ってきた時の処理
+    // console.log(request['response']);
+    let responsejson = JSON.parse(request.response);
+    // console.log(responsejson.body);
+    // console.log(responsejson.body.key);//モアイ
+    console.log(responsejson.body.unicode);//ユニコード
+
+    //emojicodeに入れられるようにする
+    emojinum = parseInt(responsejson.body.unicode,16);
+    print(emojinum);
+    // var emojinum = parseInt(stringdata, 16);//１６進数→１０進数
+  }
+  request.send();
+}
   
-  
-  
+
