@@ -1,0 +1,421 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Sawarabi+Mincho&display=swap');
+
+/*
+  Base
+-----------------------------------------------------*/
+
+/* Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-size: 100%;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+
+*,*:before,*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #fff;
+  color: #383838;
+  height: 100%;
+  font-size:100%;
+  font-family: "Roboto Mono", monospace,'Noto Sans JP', sans-serif;
+}
+
+/* html.night{
+  background: #383838;
+  color: #ccc;
+} */
+
+body{
+  background: #fff;
+  height: 100%;
+  font-family: "Roboto Mono", monospace,'Noto Sans JP', sans-serif;;
+  font-size: 1em;
+  line-height: 1.7;
+  padding: 1em 0;
+    /*Fix for FF on Mac: Font rendering a bit bolder than it should*/
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul{
+  list-style: none;
+}
+
+::-moz-selection{
+  background: #fff;
+}
+
+::selection{
+  background:#fff;
+}
+
+/* html.night ::-moz-selection{
+  background: #fff;
+}
+
+html.night ::selection{
+  background: #111;
+} */
+
+button, input[type="text"], textarea{
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: transparent;
+}
+button {
+  display:block;
+  background: inherit;
+  display: inline;
+  position: relative;
+  cursor: pointer;
+}
+
+
+
+input[type="text"], textarea{
+  display: block;
+  width: 100%;
+  padding: .5em;
+}
+
+
+/* Centering */
+/* .l-main{
+  overflow: hidden;
+  margin: 0 auto;
+  max-width:1200px;
+  width: 95%;
+} */
+
+
+/* ::-webkit-input-placeholder {
+  color: #999;
+}
+:-moz-placeholder {
+  color: #999;
+}
+::-moz-placeholder {
+  color: #999;
+}
+:-ms-input-placeholder {
+  color: #999;
+} */
+h1{
+  margin-left: 1em;
+  font-size: 1em;
+}
+
+.l-main div{
+  text-align: center;
+  margin-left: 2em;
+}
+
+ /* textarea { */
+  /* text-align: center; */
+  /* resize: none;
+  background: inherit;
+  height: 100%;
+  line-height: 1.9;
+  padding-top: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 2.5em; */
+/* } */
+
+textarea{
+  border: transparent;
+  resize: none;
+  margin-top: 5em;
+  margin-left: 10em;;
+  /* font-size: 100px; */
+}
+
+
+.FlexTextarea {
+  /* background: inherit; */
+  position: relative;
+  /* border: transparent; */
+  line-height: 1.9;
+  padding-top: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  /* font-size: 1rem;
+  line-height: 1.8; */
+}
+
+.FlexTextarea__dummy {
+  overflow: hidden;
+  visibility: hidden;
+  /* box-sizing: border-box; */
+  border: transparent;
+  padding: 5px 15px;
+  min-width: 50em;
+  max-width: 50em;
+  min-height: 120px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* border: 1px solid; */
+}
+
+.FlexTextarea__textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  /* border: 1px solid #b6c3c6; */
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  resize: none;
+}
+
+.FlexTextarea__textarea:focus {
+  box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3);
+  outline: 0;
+  /* 青い線を消すときはここ */
+  /* outline: none; */
+}
+
+
+  /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------サイズ別------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+  @media(min-width:48em){
+    /* iPad */
+    textarea {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+
+    .FlexTextarea__dummy {
+      min-width: 20em;
+      max-width: 20em;
+    }
+  }
+  
+  @media(min-width:57.5em){
+    textarea {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+    .FlexTextarea__dummy {
+      min-width: 10em;
+      max-width: 10em;
+    }
+  }
+  
+  @media(min-width:64em) {
+    textarea {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+  }
+  
+  @media(min-width:75em) {
+    textarea {
+      padding-left: 16em;
+      padding-right: 16em;
+    }
+  }
+
+    /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------main------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+#wrapper{
+  position: fixed;
+}
+
+
+
+
+
+  /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------footer------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+
+
+  footer{
+    /*footerの装飾*/
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 1em;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.l-footer{
+  width: 100%;
+  position: fixed;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+/* メニュー */
+.overlayall-setting {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(11, 194, 250, 0.774);
+}
+.overlayall-setting p{
+  color: #FFF;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 100px;
+  line-height: 32px;
+}
+.overlay-btn-setting {
+  float: right;
+  margin-right: 2em;
+}

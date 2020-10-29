@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🐙 emolingual editor</title>
+    <meta name="title" content="🐙 emolingual editor">
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- <script src="js/emoji-rain.js"></script>  -->
+    <script src="js/emoji-basic.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <header class="l-header">
+            <h1>emoji-rain</h1>
+        </header>
+
+        <main class="l-main" role="main">
+            <div class="FlexTextarea">
+            <div draggable="false" class="FlexTextarea__dummy" aria-hidden="true"></div>
+                <textarea id="filecontent" class="FlexTextarea__textarea" placeholder="Start Writing with..." spellcheck="false"></textarea>
+            </div>
+        </main>
+
+        <footer class="l-footer">
+        <!-- setting -->
+           <div class="overlayall-setting">
+               <p>test</p>
+               <p>test</p>
+               <p>test</p>
+           </div>
+
+           
+           <div class="overlay-btn-setting">
+            <i class="fas fa-cog fa-2x "></i>
+          </div>
+         <!-- setting end -->
+        </footer>
+    </div>  
+    <script src="js/main.js"></script>
+</body>
+</html>
