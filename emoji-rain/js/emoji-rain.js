@@ -13,6 +13,8 @@ let timeInterval = 1000; // テキストエリアの内容取得のタイムイ�
 //apiのURL
 var url = 'https://piez406ba1.execute-api.us-east-2.amazonaws.com/v1?text=%E5%90%BE%E8%BC%A9%E3%81%AF%E7%8C%AB%E3%81%A7%E3%81%82%E3%82%8B';
 
+
+
 function setup(){
     window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
     window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });

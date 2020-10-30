@@ -8,20 +8,47 @@ let emoji_list = []; // emojiクラスのインスタンスを入れる配列
 let timeInterval = 1000; // テキストエリアの内容取得のタイムインターバル
 let url = 'https://piez406ba1.execute-api.us-east-2.amazonaws.com/v1?text=';
 
+let randomemoji = ["😀", "😇", "🤬", "🤠", "👺", "😿", "🦾"];
+let myemojis = []; //個人の絵文字の箱
+
+
+
+// ------------screen setup :) ----------------
+// ページ読み込み時に実行したい処理
+// window.onload = function(){
+//     //スクロール禁止
+// document.addEventListener('touchmove', handleTouchMove, { passive: false });
+//   }
+//   function handleTouchMove(event) {
+//     event.preventDefault();
+// }
+  //ウィンドウサイズが変更されたときに実行される関数
+function windowResized() {
+  // print("ウィンドウサイズの変更");
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+// --------------------------------------------
+
 function setup(){
     // window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
     // window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
     canvas = createCanvas(windowWidth, windowHeight);
-    canvas.position(0,0);
+    canvas.position(0,0, "fixed");
     canvas.style('z-index','-1'); //canvasを後ろに移動する
     frameRate(60);
     getWord2Emoji();
     //timeIntervalごとにテキストエリアの内容を確認
     setInterval(getText, timeInterval);
+
+
 }
 
 function draw(){
     background(250);
+    getSliderValue_context();
+    getSliderValue_individual();
+    getSliderValue_random();
     // console.log(mouseY);
     // console.log(emoji_list);
     emoji_list.forEach((emoji) => {
@@ -29,6 +56,7 @@ function draw(){
       // console.log(emoji.key+":"+emoji.emoji);
       emoji.display();
       drop_emoji();
+      
     });
 }
 let selectemoji = "";
@@ -86,6 +114,8 @@ function drop_emoji(){
   });
 
 }
+
+let getemoji;
 // mouse Interaction
 function mousePressed() {
   emoji_list.forEach((emoji) => {
@@ -98,6 +128,8 @@ function mousePressed() {
       emoji.dragging = true;
       // emoji.selectemoji = emoji.emoji;
       selectemoji = emoji.emoji;
+      getemoji = emoji.emoji;
+      // console.log(getemoji);
       // console.log(emoji.selectemoji);
     }
   });
@@ -129,24 +161,74 @@ function getText($this){
   let sentences = textarea.value.split("\n");
   let input_message = sentences[index]
 
-  console.log(word2emoji);
+  // console.log(word2emoji);
+  // getSliderValue_context();
+  // getSliderValue_individual();
+  // getSliderValue_random();
 
   // 中身が更新されていたら
   if(input_message != ex_input_message){
-    word_list_focus = [];
-    let input_words = input_message.split(" ");
-    // console.log(input_words);
-    input_words.forEach((word) => {
-      if (word2emoji[word]) {
-        // word_list_focus.push(word);
-        word2emoji[word].forEach((emoji_from_word) => {
-          emoji_list.push(new Emoji (word, emoji_from_word));
-        });
-        // console.log(word2emoji[word]);
-        // emoji_list.push(new Emoji(word, word2emoji[word]));
+    // このif文のなかで，文脈or個人orランダムのどれかを確率的に選んで，Emojiクラスのインスタンスを作る
 
-      }
-    });
+    // 0-1までの乱数を生成する
+    var random = Math.random();
+    // console.log(random); 
+    var slider_all = Number(slider_context) + Number(slider_individual) + Number(slider_random);
+    slider_all = Number(slider_all);
+    var case1 = (slider_context/slider_all);
+    var case2 = (slider_individual/slider_all);
+    var case3 = (slider_random / slider_all);
+    console.log("random=" + random + "case1=" + case1 + "case2=" + case2 + "case3=" + case3);
+    
+
+    // switch-case文で，文脈or個人orランダムに分岐．とりあえずは，等確率で分岐するように書く．後々スライダーで可変にできるようにしたい
+    switch(true){
+      case random <= case1:
+        // case 文脈
+        let input_words = input_message.split(" ");
+        // console.log(input_words);
+        input_words.forEach((word) => {
+          if (word2emoji[word]) {
+            word2emoji[word].forEach((emoji_from_word) => {
+              emoji_list.push(new Emoji (word, emoji_from_word));
+            });
+            // console.log(word2emoji[word]);
+            // emoji_list.push(new Emoji(word, word2emoji[word]));
+          }
+        });
+        console.log("文脈");
+        slider_all = 0;
+        break;
+      case case1 < random && random <= case2:
+        //  case 個人
+        // 過去に入力した絵文字をリストで保持しておいて，その中から適当に降らせる（インスタンスを作る）
+        myemojis.push(getemoji);
+        // console.log(myemojis);
+        for(let i=0;i < myemojis.length;i++){
+          emoji_list.push(new Emoji ("individual", myemojis[i]));
+          console.log(myemojis);
+        }
+        // myemojis.forEach((emoji) => {
+        //   emoji_list.push(new Emoji ("individual", emoji));
+        // });
+        console.log("個人");
+        slider_all = 0;
+        break;
+      case random > case1+ case2:
+        // case ランダム
+        // emoji_list.push(randomemoji);
+        for(var i=0; i < randomemoji.length;i++){
+          emoji_list.push(new Emoji ("random", randomemoji[i]));
+          // console.log(randomemoji[i]);
+        }
+        console.log("ランダム");
+        slider_all = 0;
+        break;
+      default:
+        random=0;
+      break;
+
+    }
     // getFromApi(input_message);
     ex_input_message = input_message;
   }
@@ -193,8 +275,8 @@ function uni2emo(unicode){
 
 function createEmojis() {
   for (let key in word2emoji) {
-    console.log('key:' + key + 'value:');
-    console.log(word2emoji[key]);
+    // console.log('key:' + key + 'value:');
+    // console.log(word2emoji[key]);
     new Emoji(key, word2emoji[key]);
   }
 }
@@ -211,7 +293,7 @@ class Emoji{
       this.size = 50;
       this.pos= createVector(width/2, height/2);
 
-      console.log(this.emoji+" is associated with "+this.key);
+      // console.log(this.emoji+" is associated with "+this.key);
       this.setup();
     }
 
@@ -253,20 +335,6 @@ class Emoji{
             this.pos.y = 0;
             this.delete();
         }
-
-        // //テキストボックスに絵文字入れる
-        // if(this.drop){
-        //   // 　触った絵文字をテキストボックスに追加していく
-        //   var area = document.getElementById("filecontent");
-
-        //   //カーソルの位置を基準に前後を分割して、その間に文字列を挿入
-        //   area.value = area.value.substr(0, area.selectionStart)
-        //   + this.selectemoji
-        //   + area.value.substr(area.selectionStart);
-        //   // this.pre_selectemoji = this.selectemoji;
-        //   // this.selectemoji = "";
-        //   this.drop = false;
-        // }
     }
 
     display() {
@@ -282,3 +350,36 @@ class Emoji{
       this.flag = false;
     }
 }
+
+var slider_context;
+var slider_individual;
+var slider_random;
+
+//slider-value読み取る話
+function getSliderValue_context(){
+  var slider = document.getElementById("context");
+  slider_context = document.getElementById("context").value;
+  // 埋め込む先の要素
+const sliderval = document.getElementById('contextval');
+sliderval.innerText = slider.value;
+  // console.log(slider.value);
+}
+
+function getSliderValue_individual(){
+  var slider = document.getElementById("individual");
+  slider_individual = document.getElementById("individual").value;
+  // 埋め込む先の要素
+const sliderval = document.getElementById('individualval');
+sliderval.innerText = slider.value;
+  // console.log(slider.value);
+}
+
+function getSliderValue_random(){
+  var slider = document.getElementById("randomslider");
+  slider_random = document.getElementById("randomslider").value;
+  // 埋め込む先の要素
+const sliderval = document.getElementById('randomval');
+sliderval.innerText = slider.value;
+  // console.log(slider.value);
+}
+
