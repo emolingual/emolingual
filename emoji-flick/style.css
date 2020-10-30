@@ -148,8 +148,9 @@ textarea{
   list-style:none;
   position:relative;
   padding:0;
-  margin-left:50px;
+  margin-left:20px;
   margin-top:250px;
+  float: left;
 }
 .flick-list li{
   border:1px solid rgb(128, 128, 128);

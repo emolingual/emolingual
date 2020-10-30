@@ -26,6 +26,10 @@ function setup(){
     setInterval(getText, timeInterval);
     // setSwipe("#emoji-keyboard");
     setSwipe("#emojikey");
+    setSwipe2("#emojikey2");
+    setSwipe3("#emojikey3");
+    setSwipe4("#emojikey4");
+    
 }
 
 function draw(){
@@ -214,33 +218,11 @@ function setSwipe(elem) {
     e.preventDefault();
     endX = e.changedTouches[0].pageX;
     endY = e.changedTouches[0].pageY;
-    let diffX = endX - startX;
+    // let diffX = endX - startX;
     let diffY = endY - startY;
     let val = document.getElementById( "filecontent" ).value;
     // console.log(Math.abs(diff));
 
-    if(startX > endX && Math.abs(diffX) >= 400){
-      val = val + "😀";
-      document.getElementById("filecontent").value=val;
-      console.log("😀");
-      
-    }
-    else if(startX > endX && Math.abs(diffX) >=100){
-      val = val + "😊";
-      document.getElementById("filecontent").value=val;
-      console.log("😊");
-      
-    }
-
-      else if (startX < endX && Math.abs(diffX) >=100) {    // 左から右にスワイプ
-          // 左から右にスワイプした時の処理
-          // console.log("😀");
-          textSize(50);
-          // text("🥺", width/2,500);
-          val = val + "🥺";
-          document.getElementById("filecontent").value=val;
-      }
-      
       let diff = 60;
       console.log(diffY);
       //下から上
@@ -285,14 +267,335 @@ function setSwipe(elem) {
         else if(startY > endY && 540 < Math.abs(diffY) && Math.abs(diffY) <=630){
           val = val + "😂";
           document.getElementById("filecontent").value=val;
-        
+        }
 
-
-      }else if(startY < moveY && startY + dist < moveY){
-        //上から下
-        console.log("from top to down");
-      }
   });
+  
+
+
+  //隠す処理
+  var isTouch = ((typeof window.ontouchstart) !== 'undefined');
+  var touchStart = isTouch ? 'touchstart' : 'mousedown';
+  var touchEnd = isTouch ? 'touchend' : 'mouseup';
+
+  $('.flick-median').on(touchStart, function(e){
+      e.preventDefault();
+
+      $(this).nextAll().show();
+  });
+  $('.flick-list li').on(touchEnd, function(e){
+      e.preventDefault();
+
+      var inputVal =$('#flickInput').val() + $(this).html();
+      $('#flickInput').val(inputVal)
+
+      $(this).parent().children(':not(.flick-median)').hide();
+  });
+}
+
+function setSwipe2(elem) {
+  let t = document.querySelector(elem);
+  let startX;        // タッチ開始 x座標
+  let startY;        // タッチ開始 y座標
+  let moveX;    // スワイプ中の x座標
+  let moveY;    // スワイプ中の y座標
+  // let dist = 30;    // スワイプを感知する最低距離（ピクセル単位）
+  // let dist2 = 100;
+
+  let endX;
+  let endY;
+
+
+  // タッチ開始時： xy座標を取得
+      t.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        startX = e.touches[0].pageX;
+        startY = e.touches[0].pageY;
+    });
+
+   
+  // スワイプ中： xy座標を取得
+  t.addEventListener("touchmove", function(e) {
+      e.preventDefault();
+      moveX = e.changedTouches[0].pageX;
+      moveY = e.changedTouches[0].pageY;
+  });
+   
+  // タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
+  t.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    endX = e.changedTouches[0].pageX;
+    endY = e.changedTouches[0].pageY;
+    // let diffX = endX - startX;
+    let diffY = endY - startY;
+    let val = document.getElementById( "filecontent" ).value;
+    // console.log(Math.abs(diff));
+
+      let diff = 60;
+      console.log(diffY);
+      //下から上
+      if(startY > endY && 0 < Math.abs(diffY) && Math.abs(diffY) <=60){
+        console.log("from down to top");
+        val = val + "😒";
+          document.getElementById("filecontent").value=val;
+      }
+        else if(startY > endY && 60 < Math.abs(diffY) && Math.abs(diffY) <=150){
+          val = val + "☹️";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 120 < Math.abs(diffY) && Math.abs(diffY) <=210){
+          val = val + "😤";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 180 < Math.abs(diffY) && Math.abs(diffY) <=270){
+          val = val + "😠";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 240 < Math.abs(diffY) && Math.abs(diffY) <=330){
+          val = val + "😡";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 300 < Math.abs(diffY) && Math.abs(diffY) <=390){
+          val = val + "🤬";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 360 < Math.abs(diffY) && Math.abs(diffY) <=450){
+          val = val + "🖕";
+          document.getElementById("filecontent").value=val;
+        }
+
+        // else if(startY > endY && 420 < Math.abs(diffY) && Math.abs(diffY) <=510){
+        //   val = val + "😁";
+        //   document.getElementById("filecontent").value=val;
+        // }
+        // else if(startY > endY && 480 < Math.abs(diffY) && Math.abs(diffY) <=570){
+        //   val = val + "😆";
+        //   document.getElementById("filecontent").value=val;
+        // }
+        // else if(startY > endY && 540 < Math.abs(diffY) && Math.abs(diffY) <=630){
+        //   val = val + "😂";
+        //   document.getElementById("filecontent").value=val;
+
+  });
+
+
+
+  //隠す処理
+  var isTouch = ((typeof window.ontouchstart) !== 'undefined');
+  var touchStart = isTouch ? 'touchstart' : 'mousedown';
+  var touchEnd = isTouch ? 'touchend' : 'mouseup';
+
+  $('.flick-median').on(touchStart, function(e){
+      e.preventDefault();
+
+      $(this).nextAll().show();
+  });
+  $('.flick-list li').on(touchEnd, function(e){
+      e.preventDefault();
+
+      var inputVal =$('#flickInput').val() + $(this).html();
+      $('#flickInput').val(inputVal)
+
+      $(this).parent().children(':not(.flick-median)').hide();
+  });
+}
+
+
+function setSwipe3(elem) {
+  let t = document.querySelector(elem);
+  let startX;        // タッチ開始 x座標
+  let startY;        // タッチ開始 y座標
+  let moveX;    // スワイプ中の x座標
+  let moveY;    // スワイプ中の y座標
+  // let dist = 30;    // スワイプを感知する最低距離（ピクセル単位）
+  // let dist2 = 100;
+
+  let endX;
+  let endY;
+
+
+  // タッチ開始時： xy座標を取得
+      t.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        startX = e.touches[0].pageX;
+        startY = e.touches[0].pageY;
+    });
+
+   
+  // スワイプ中： xy座標を取得
+  t.addEventListener("touchmove", function(e) {
+      e.preventDefault();
+      moveX = e.changedTouches[0].pageX;
+      moveY = e.changedTouches[0].pageY;
+  });
+   
+  // タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
+  t.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    endX = e.changedTouches[0].pageX;
+    endY = e.changedTouches[0].pageY;
+    // let diffX = endX - startX;
+    let diffY = endY - startY;
+    let val = document.getElementById( "filecontent" ).value;
+    // console.log(Math.abs(diff));
+
+      let diff = 60;
+      console.log(diffY);
+      //下から上
+      if(startY > endY && 0 < Math.abs(diffY) && Math.abs(diffY) <=60){
+        console.log("from down to top");
+        val = val + "😟";
+          document.getElementById("filecontent").value=val;
+      }
+        else if(startY > endY && 60 < Math.abs(diffY) && Math.abs(diffY) <=150){
+          val = val + "😞";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 120 < Math.abs(diffY) && Math.abs(diffY) <=210){
+          val = val + "😓";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 180 < Math.abs(diffY) && Math.abs(diffY) <=270){
+          val = val + "😢";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 240 < Math.abs(diffY) && Math.abs(diffY) <=330){
+          val = val + "😣";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 300 < Math.abs(diffY) && Math.abs(diffY) <=390){
+          val = val + "😫";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 360 < Math.abs(diffY) && Math.abs(diffY) <=450){
+          val = val + "😿";
+          document.getElementById("filecontent").value=val;
+        }
+
+        else if(startY > endY && 420 < Math.abs(diffY) && Math.abs(diffY) <=510){
+          val = val + "😭";
+          document.getElementById("filecontent").value=val;
+        }
+        // else if(startY > endY && 480 < Math.abs(diffY) && Math.abs(diffY) <=570){
+        //   val = val + "😆";
+        //   document.getElementById("filecontent").value=val;
+        // }
+        // else if(startY > endY && 540 < Math.abs(diffY) && Math.abs(diffY) <=630){
+        //   val = val + "😂";
+        //   document.getElementById("filecontent").value=val;
+        // }
+
+  });
+  
+
+
+  //隠す処理
+  var isTouch = ((typeof window.ontouchstart) !== 'undefined');
+  var touchStart = isTouch ? 'touchstart' : 'mousedown';
+  var touchEnd = isTouch ? 'touchend' : 'mouseup';
+
+  $('.flick-median').on(touchStart, function(e){
+      e.preventDefault();
+
+      $(this).nextAll().show();
+  });
+  $('.flick-list li').on(touchEnd, function(e){
+      e.preventDefault();
+
+      var inputVal =$('#flickInput').val() + $(this).html();
+      $('#flickInput').val(inputVal)
+
+      $(this).parent().children(':not(.flick-median)').hide();
+  });
+}
+
+
+function setSwipe4(elem) {
+  let t = document.querySelector(elem);
+  let startX;        // タッチ開始 x座標
+  let startY;        // タッチ開始 y座標
+  let moveX;    // スワイプ中の x座標
+  let moveY;    // スワイプ中の y座標
+  // let dist = 30;    // スワイプを感知する最低距離（ピクセル単位）
+  // let dist2 = 100;
+
+  let endX;
+  let endY;
+
+
+  // タッチ開始時： xy座標を取得
+      t.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        startX = e.touches[0].pageX;
+        startY = e.touches[0].pageY;
+    });
+
+   
+  // スワイプ中： xy座標を取得
+  t.addEventListener("touchmove", function(e) {
+      e.preventDefault();
+      moveX = e.changedTouches[0].pageX;
+      moveY = e.changedTouches[0].pageY;
+  });
+   
+  // タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
+  t.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    endX = e.changedTouches[0].pageX;
+    endY = e.changedTouches[0].pageY;
+    // let diffX = endX - startX;
+    let diffY = endY - startY;
+    let val = document.getElementById( "filecontent" ).value;
+    // console.log(Math.abs(diff));
+
+      let diff = 60;
+      console.log(diffY);
+      //下から上
+      if(startY > endY && 0 < Math.abs(diffY) && Math.abs(diffY) <=60){
+        console.log("from down to top");
+        val = val + "😯";
+          document.getElementById("filecontent").value=val;
+      }
+        else if(startY > endY && 60 < Math.abs(diffY) && Math.abs(diffY) <=150){
+          val = val + "😮";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 120 < Math.abs(diffY) && Math.abs(diffY) <=210){
+          val = val + "😲";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 180 < Math.abs(diffY) && Math.abs(diffY) <=270){
+          val = val + "😳";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 240 < Math.abs(diffY) && Math.abs(diffY) <=330){
+          val = val + "🙀";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 300 < Math.abs(diffY) && Math.abs(diffY) <=390){
+          val = val + "😵";
+          document.getElementById("filecontent").value=val;
+        }
+        // else if(startY > endY && 360 < Math.abs(diffY) && Math.abs(diffY) <=450){
+        //   val = val + "😿";
+        //   document.getElementById("filecontent").value=val;
+        // }
+
+        // else if(startY > endY && 420 < Math.abs(diffY) && Math.abs(diffY) <=510){
+        //   val = val + "😭";
+        //   document.getElementById("filecontent").value=val;
+        // }
+        // else if(startY > endY && 480 < Math.abs(diffY) && Math.abs(diffY) <=570){
+        //   val = val + "😆";
+        //   document.getElementById("filecontent").value=val;
+        // }
+        // else if(startY > endY && 540 < Math.abs(diffY) && Math.abs(diffY) <=630){
+        //   val = val + "😂";
+        //   document.getElementById("filecontent").value=val;
+        // }
+
+  });
+  
 
 
   //隠す処理
