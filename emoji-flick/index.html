@@ -1,79 +1,76 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>フリックキーボード</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <style>
-            .flick-list{
-                list-style:none;
-                position:relative;
-                padding:0;
-                margin-left:50px;
-                margin-top:250px;
-            }
-            .flick-list li{
-                border:1px solid gray;
-                font-size:25px;
-                width:40px;
-                height:40px;
-                text-align:center;
-                line-height:40px;
-            }
-            .flick-list li:hover{
-                background-color:blue;
-                color:white;
-            }
-            .flick-left,.flick-top,.flick-right,.flick-bottom{
-                display: none;
-                position:absolute;
-                top:0;
-                left:0;
-            }
-            .flick-list .flick-left{
-                top:-41px;
-                left:0px;
-            }
-            .flick-list .flick-top{
-                top:-82px;
-                left:0;
-            }
-            .flick-list .flick-right{
-                top:-123px;
-                left:px;
-            }
-            .flick-list .flick-bottom{
-                top:-164px;
-                left:0;
-            }
-        </style>
-    </head>
-    <input type="text" id="flickInput">
-    <ul class="flick-list">
-        <li class="flick-median">😐</li>
-        <li class="flick-left">😀</li>
-        <li class="flick-top">😃</li>
-        <li class="flick-right">😁</li>
-        <li class="flick-bottom">😆</li>
-    </ul>
-    <script>
-        var isTouch = ((typeof window.ontouchstart) !== 'undefined');
-        var touchStart = isTouch ? 'touchstart' : 'mousedown';
-        var touchEnd = isTouch ? 'touchend' : 'mouseup';
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🐙 emolingual editor</title>
+    <meta name="title" content="🐙 emolingual editor">
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- <script src="js/emoji-rain.js"></script>  -->
+    <script src="js/emoji-basic.js"></script>
+    <!-- ジェスチャー -->
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+     
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-        $('.flick-median').on(touchStart, function(e){
-            e.preventDefault();
+    <style>
+        
+    </style>
+</head>
 
-            $(this).nextAll().show();
-        });
-        $('.flick-list li').on(touchEnd, function(e){
-            e.preventDefault();
+<body>
+    <div id="wrapper">
+        <header class="l-header">
+            <h1>emoji-flick</h1>
+        </header>
+        <main class="l-main" role="main">
+            <div draggable="false">
+                <textarea id="filecontent"  placeholder="Start Writing with..." spellcheck="false"></textarea>
+            </div>
 
-            var inputVal =$('#flickInput').val() + $(this).html();
-            $('#flickInput').val(inputVal)
+            <ul class="flick-list">
+                <li class="flick-median" id="emojikey">😐</li>
+                <li class="flick-1">🙂</li>
+                <li class="flick-2">🙃</li>
+                <li class="flick-3">😀</li>
+                <li class="flick-4">😃</li>
+                <li class="flick-5">😊</li>
+                <li class="flick-6">😄</li>
+                <li class="flick-7">😁</li>
+                <li class="flick-8">😆</li>
+                <li class="flick-9">😂</li>
+                <!-- <li class="flick-10">🤣</li> -->
+            </ul>
 
-            $(this).parent().children(':not(.flick-median)').hide();
-        });
-    </script>
+
+<!-- 
+            <div id="emoji-keyboard">
+                <div class="emojikey"></div>
+            </div> -->
+        </main>
+
+        <footer class="l-footer">
+        <!-- setting -->
+           <div class="overlayall-setting">
+               <p>test</p>
+               <p>test</p>
+               <p>test</p>
+           </div>
+
+           
+           <div class="overlay-btn-setting">
+            <i class="fas fa-cog fa-2x "></i>
+          </div>
+         <!-- setting end -->
+        </footer>
+    </div>  
+    <script src="js/main.js"></script>
+</body>
 </html>

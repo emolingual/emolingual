@@ -4,6 +4,16 @@ let emoji_list = [] // emojiクラスのインスタンスを入れる配列
 let timeInterval = 5000 // テキストエリアの内容取得のタイムインターバル
 let url = 'https://piez406ba1.execute-api.us-east-2.amazonaws.com/v1?text=';
 
+// ------------screen setup :) ----------------
+// ページ読み込み時に実行したい処理
+window.onload = function(){
+    //スクロール禁止
+document.addEventListener('touchmove', handleTouchMove, { passive: false });
+  }
+  function handleTouchMove(event) {
+    event.preventDefault();
+}
+
 function setup(){
     // window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
     // window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });
@@ -14,6 +24,8 @@ function setup(){
 
     //timeIntervalごとにテキストエリアの内容を確認
     setInterval(getText, timeInterval);
+    // setSwipe("#emoji-keyboard");
+    setSwipe("#emojikey");
 }
 
 function draw(){
@@ -26,7 +38,9 @@ function draw(){
       emoji.display();
     });
 
-    setSwipe("#emoji-keyboard");
+    // setSwipe("#emoji-keyboard");
+
+
 }
 
 // --------- API :P ------------
@@ -177,6 +191,7 @@ function setSwipe(elem) {
   // let dist2 = 100;
 
   let endX;
+  let endY;
 
 
   // タッチ開始時： xy座標を取得
@@ -184,67 +199,118 @@ function setSwipe(elem) {
         e.preventDefault();
         startX = e.touches[0].pageX;
         startY = e.touches[0].pageY;
-        console.log(startX);
     });
 
-
+   
   // スワイプ中： xy座標を取得
   t.addEventListener("touchmove", function(e) {
       e.preventDefault();
       moveX = e.changedTouches[0].pageX;
       moveY = e.changedTouches[0].pageY;
   });
-
+   
   // タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
   t.addEventListener("touchend", function(e) {
     e.preventDefault();
     endX = e.changedTouches[0].pageX;
-    let diff = endX - startX;
-    console.log(Math.abs(diff));
-    if(startX > endX && Math.abs(diff) >= 800){
-      if(mouseReleased){
-        console.log("😀");
-      }
-      // console.log("😀");
+    endY = e.changedTouches[0].pageY;
+    let diffX = endX - startX;
+    let diffY = endY - startY;
+    let val = document.getElementById( "filecontent" ).value;
+    // console.log(Math.abs(diff));
+
+    if(startX > endX && Math.abs(diffX) >= 400){
+      val = val + "😀";
+      document.getElementById("filecontent").value=val;
+      console.log("😀");
+      
     }
-    else if(startX > endX && Math.abs(diff) >=400){
-      if(mouseReleased){
-        console.log("😆");
-      }
-      // console.log("😆");
+    else if(startX > endX && Math.abs(diffX) >=100){
+      val = val + "😊";
+      document.getElementById("filecontent").value=val;
+      console.log("😊");
+      
     }
 
-    //   if (startX > moveX && startX > moveX + dist && endX< 50) {        // 右から左にスワイプ
-    //       // 右から左にスワイプした時の処理
-    //       console.log("😀");
-    //       // console.log("startX= " + startX + "moveX=" + moveX);
-    //   }
-    //   else if (startX > moveX && startX > moveX + dist && endX< 100) {        // 右から左にスワイプ
-    //     // 右から左にスワイプした時の処理
-    //     console.log("😆");
-    // }
-    //   else if (startX < moveX && startX + dist < moveX) {    // 左から右にスワイプ
-    //       // 左から右にスワイプした時の処理
-    //       // console.log("😀");
-    //       textSize(50);
-    //       // text("🥺", width/2,500);
-    //       var area = document.getElementById("filecontent");
-    //       area.value = area.value.substr(0, area.selectionStart) + "😇" + area.value.substr(area.selectionStart);
+      else if (startX < endX && Math.abs(diffX) >=100) {    // 左から右にスワイプ
+          // 左から右にスワイプした時の処理
+          // console.log("😀");
+          textSize(50);
+          // text("🥺", width/2,500);
+          val = val + "🥺";
+          document.getElementById("filecontent").value=val;
+      }
+      
+      let diff = 60;
+      console.log(diffY);
+      //下から上
+      if(startY > endY && 0 < Math.abs(diffY) && Math.abs(diffY) <=60){
+        console.log("from down to top");
+        val = val + "🙂";
+          document.getElementById("filecontent").value=val;
+      }
+        else if(startY > endY && 60 < Math.abs(diffY) && Math.abs(diffY) <=150){
+          val = val + "🙃";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 120 < Math.abs(diffY) && Math.abs(diffY) <=210){
+          val = val + "😀";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 180 < Math.abs(diffY) && Math.abs(diffY) <=270){
+          val = val + "😃";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 240 < Math.abs(diffY) && Math.abs(diffY) <=330){
+          val = val + "😊";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 300 < Math.abs(diffY) && Math.abs(diffY) <=390){
+          val = val + "😊";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 360 < Math.abs(diffY) && Math.abs(diffY) <=450){
+          val = val + "😄";
+          document.getElementById("filecontent").value=val;
+        }
 
-    //   }else if(startY > moveY && startY > moveY + dist){
-    //     //下から上
-    //     console.log("from down to top");
-    //   }else if(startY < moveY && startY + dist < moveY){
-    //     //上から下
-    //     console.log("from top to down");
-    //   }
+        else if(startY > endY && 420 < Math.abs(diffY) && Math.abs(diffY) <=510){
+          val = val + "😁";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 480 < Math.abs(diffY) && Math.abs(diffY) <=570){
+          val = val + "😆";
+          document.getElementById("filecontent").value=val;
+        }
+        else if(startY > endY && 540 < Math.abs(diffY) && Math.abs(diffY) <=630){
+          val = val + "😂";
+          document.getElementById("filecontent").value=val;
+        
+
+
+      }else if(startY < moveY && startY + dist < moveY){
+        //上から下
+        console.log("from top to down");
+      }
+  });
+
+
+  //隠す処理
+  var isTouch = ((typeof window.ontouchstart) !== 'undefined');
+  var touchStart = isTouch ? 'touchstart' : 'mousedown';
+  var touchEnd = isTouch ? 'touchend' : 'mouseup';
+
+  $('.flick-median').on(touchStart, function(e){
+      e.preventDefault();
+
+      $(this).nextAll().show();
+  });
+  $('.flick-list li').on(touchEnd, function(e){
+      e.preventDefault();
+
+      var inputVal =$('#flickInput').val() + $(this).html();
+      $('#flickInput').val(inputVal)
+
+      $(this).parent().children(':not(.flick-median)').hide();
   });
 }
-
-
-// //hammer.js
-// var myElement = document.getElementById('emoji-keyboard');
-// var mc = new Hammer(myElement);
-// mc.on("panleft panright tap press", function(ev) {
-//     myElement.textContent = ev.type +" gesture detected.";
-// });

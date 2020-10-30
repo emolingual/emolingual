@@ -1,0 +1,288 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Sawarabi+Mincho&display=swap');
+
+*,*:before,*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #fff;
+  color: #383838;
+  height: 100%;
+  font-size:100%;
+}
+
+html.night{
+  background: #383838;
+  color: #ccc;
+}
+
+body{
+  height: 100%;
+  font-family: "Roboto Mono", monospace,'Noto Sans JP', sans-serif;;
+  font-size: 1em;
+  line-height: 1.7;
+  padding: 1em 0;
+    /*Fix for FF on Mac: Font rendering a bit bolder than it should*/
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul{
+  list-style: none;
+}
+
+::-moz-selection{
+  background: #ddd;
+}
+
+::selection{
+  background:#ddd;
+}
+
+html.night ::-moz-selection{
+  background: #111;
+}
+
+html.night ::selection{
+  background: #111;
+}
+
+button, input[type="text"], textarea{
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: transparent;
+}
+button {
+  display:block;
+  background: inherit;
+  display: inline;
+  position: relative;
+  cursor: pointer;
+}
+
+
+
+input[type="text"], textarea{
+  display: block;
+  width: 100%;
+  padding: .5em;
+}
+
+::-webkit-input-placeholder {
+  color: #999;
+}
+:-moz-placeholder {
+  color: #999;
+}
+::-moz-placeholder {
+  color: #999;
+}
+:-ms-input-placeholder {
+  color: #999;
+}
+
+textarea{
+    font-size: 30px;
+    resize: none;
+    background: transparent;
+    height: 100%;
+    line-height: 1.9em;
+    padding-top: 4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 6em;
+  }
+
+  
+  /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------サイズ別------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+  @media(min-width:48em){
+    textarea {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+
+  @media(min-width:57.5em){
+    textarea {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+
+  @media(min-width:64em) {
+    textarea {
+      padding-left: 10em;
+      padding-right: 10em;
+    }
+  }
+
+  @media(min-width:75em) {
+    textarea {
+      padding-left: 8em;
+      padding-right: 8em;
+    }
+  }
+
+    /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------main------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+#wrapper{
+  position: fixed;
+}
+
+/* フリック */
+.flick-list{
+  list-style:none;
+  position:relative;
+  padding:0;
+  margin-left:50px;
+  margin-top:250px;
+}
+.flick-list li{
+  border:1px solid rgb(128, 128, 128);
+  font-size:25px;
+  width:60px;
+  height:60px;
+  padding-top: 10px;
+  padding-right: 8px;
+  text-align:center;
+  line-height:40px;
+  
+}
+.flick-list li:hover{
+  background-color:blue;
+  color:white;
+}
+.flick-1,.flick-2,.flick-3,.flick-4,.flick-5,.flick-6,.flick-7,.flick-8,.flick-9{
+  display: none;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.flick-list .flick-1{
+  top:-61px;
+  left:0px;
+}
+.flick-list .flick-2{
+  top:-122px;
+  left:0;
+}
+.flick-list .flick-3{
+  top:-183px;
+  left:0px;
+}
+.flick-list .flick-4{
+  top:-244px;
+  left:0;
+}
+
+.flick-list .flick-5{
+  top:-305px;
+  left:0;
+}
+
+.flick-list .flick-6{
+  top:-366px;
+  left:0;
+}
+
+.flick-list .flick-7{
+  top:-427px;
+  left:0;
+}
+
+.flick-list .flick-8{
+  top:-488px;
+  left:0;
+}
+
+.flick-list .flick-9{
+  top:-549px;
+  left:0;
+}
+
+.flick-list .flick-10{
+  top:-610px;
+  left:0;
+}
+
+/* emoji-flick */
+.emoji-keyboard{
+  float: right;
+}
+
+.emojikey{
+  float: right;
+  width: 100px;
+  height: 100px;
+  background: skyblue;
+  cursor: pointer;
+  transition: 0.8s;
+  margin: 0 8px 8px 0;
+  text-align: center;
+  line-height: 100px;
+}
+
+
+
+  /* ------------------------------- */
+  /* ------------------------------- */
+  /* ------------footer------------- */
+  /* ------------------------------- */
+  /* ------------------------------- */
+
+
+  footer{
+    /*footerの装飾*/
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 1em;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.l-footer{
+  width: 100%;
+  position: fixed;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+/* メニュー */
+.overlayall-setting {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(255, 210, 8, 0.5);
+}
+.overlayall-setting p{
+  color: #FFF;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 100px;
+  line-height: 32px;
+}
+.overlay-btn-setting {
+  float: right;
+  margin-right: 2em;
+}
+
