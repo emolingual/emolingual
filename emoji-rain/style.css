@@ -293,7 +293,7 @@ textarea{
   border: transparent;
   padding: 5px 15px;
   min-width: 50em;
-  max-width: 50em;
+  max-width: 100em;
   min-height: 120px;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -319,10 +319,10 @@ textarea{
 }
 
 .FlexTextarea__textarea:focus {
-  /* box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3); */
+  box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3);
   outline: 0;
   /* 青い線を消すときはここ */
-  outline: none;
+  /* outline: none; */
 }
 
 
