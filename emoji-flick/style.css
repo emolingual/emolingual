@@ -16,6 +16,7 @@ html {
   color: #383838;
   height: 100%;
   font-size:100%;
+  /* font-size: 20px; */
 }
 
 html.night{
@@ -26,7 +27,7 @@ html.night{
 body{
   height: 100%;
   font-family: "Roboto Mono", monospace,'Noto Sans JP', sans-serif;;
-  font-size: 1em;
+  font-size: 1.2em;
   line-height: 1.7;
   padding: 1em 0;
     /*Fix for FF on Mac: Font rendering a bit bolder than it should*/
@@ -88,7 +89,21 @@ input[type="text"], textarea{
   color: #999;
 }
 
+#filecontent{
+  letter-spacing: 2px;
+  font-size: 50px;
+}
 textarea{
+  border: transparent;
+  resize: none;
+  margin-top: 5em;
+  margin-left: 3.5em;
+  /* letter-spacing: 2em; */
+  /* font-size: 150px; */
+  
+  /* font-size: 100px; */
+}
+/* textarea{
     font-size: 30px;
     resize: none;
     background: transparent;
@@ -98,7 +113,61 @@ textarea{
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 6em;
-  }
+    letter-spacing: 0.5em;
+  } */
+
+
+.FlexTextarea {
+  /* background: inherit; */
+  position: relative;
+  /* border: transparent; */
+  line-height: 1.9;
+  padding-top: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  /* font-size: 1rem;
+  line-height: 1.8; */
+}
+
+.FlexTextarea__dummy {
+  overflow: hidden;
+  visibility: hidden;
+  /* box-sizing: border-box; */
+  border: transparent;
+  padding: 5px 15px;
+  min-width: 50em;
+  max-width: 50em;
+  min-height: 120px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* border: 1px solid; */
+}
+
+.FlexTextarea__textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  /* border: 1px solid #b6c3c6; */
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  resize: none;
+}
+
+.FlexTextarea__textarea:focus {
+  /* box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3); */
+  /* outline: 0; */
+  /* 青い線を消すときはここ */
+  outline: none;
+}
 
   
   /* ------------------------------- */
@@ -107,30 +176,41 @@ textarea{
   /* ------------------------------- */
   /* ------------------------------- */
   @media(min-width:48em){
+    /* iPad */
     textarea {
-      padding-left: 2em;
-      padding-right: 2em;
+      padding-left: 3em;
+      padding-right: 3em;
+      
+    }
+
+    .FlexTextarea__dummy {
+      min-width: 20em;
+      max-width: 20em;
     }
   }
 
   @media(min-width:57.5em){
     textarea {
-      padding-left: 2em;
-      padding-right: 2em;
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+    .FlexTextarea__dummy {
+      min-width: 10em;
+      max-width: 10em;
     }
   }
 
   @media(min-width:64em) {
     textarea {
-      padding-left: 10em;
-      padding-right: 10em;
+      padding-left: 5em;
+      padding-right: 5em;
     }
   }
 
   @media(min-width:75em) {
     textarea {
-      padding-left: 8em;
-      padding-right: 8em;
+      padding-left: 16em;
+      padding-right: 16em;
     }
   }
 
@@ -142,9 +222,17 @@ textarea{
 #wrapper{
   position: fixed;
 }
+header h1{
+  margin-left: 1em;
+  font-size: 2em;
+}
+.flicks{
+  margin-left: 18em;
+  margin-top: 20em;
+}
 
 /* フリック */
-.flick-list{
+.flicks .flick-list{
   list-style:none;
   position:relative;
   padding:0;
@@ -152,7 +240,7 @@ textarea{
   margin-top:250px;
   float: left;
 }
-.flick-list li{
+.flicks .flick-list li{
   border:1px solid rgb(128, 128, 128);
   font-size:25px;
   width:60px;
@@ -163,17 +251,17 @@ textarea{
   line-height:40px;
   
 }
-.flick-list li:hover{
+.flicks .flick-list li:hover{
   background-color:blue;
   color:white;
 }
-.flick-1,.flick-2,.flick-3,.flick-4,.flick-5,.flick-6,.flick-7,.flick-8,.flick-9{
+.flicks .flick-1,.flick-2,.flick-3,.flick-4,.flick-5,.flick-6,.flick-7,.flick-8,.flick-9{
   display: none;
   position:absolute;
   top:0;
   left:0;
 }
-.flick-list .flick-1{
+.flicks .flick-list .flick-1{
   top:-61px;
   left:0px;
 }

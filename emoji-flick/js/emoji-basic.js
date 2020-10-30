@@ -14,6 +14,12 @@ document.addEventListener('touchmove', handleTouchMove, { passive: false });
     event.preventDefault();
 }
 
+  //ウィンドウサイズが変更されたときに実行される関数
+  function windowResized() {
+    // print("ウィンドウサイズの変更");
+    resizeCanvas(windowWidth, windowHeight);
+  }
+  
 function setup(){
     // window.addEventListener("touchstart", function (event) { event.preventDefault(); }, { passive: false });
     // window.addEventListener("touchmove", function (event) { event.preventDefault(); }, { passive: false });

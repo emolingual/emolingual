@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>🐙 emolingual editor</title>
+    <title>🐙 emolingual-flick</title>
     <meta name="title" content="🐙 emolingual editor">
     
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script> -->
@@ -31,10 +31,12 @@
             <h1>emoji-flick</h1>
         </header>
         <main class="l-main" role="main">
-            <div draggable="false">
-                <textarea id="filecontent"  placeholder="Start Writing with..." spellcheck="false"></textarea>
-            </div>
+            <div class="FlexTextarea">
+                <div draggable="false" class="FlexTextarea__dummy" aria-hidden="true"></div>
+                    <textarea id="filecontent" class="FlexTextarea__textarea" placeholder="Start Writing ..." spellcheck="false"></textarea>
+                </div>
 
+            <div class="flicks">
             <ul class="flick-list">
                 <li class="flick-median" id="emojikey">😁</li>
                 <li class="flick-1">🙂</li>
@@ -90,7 +92,7 @@
                 <!-- <li class="flick-9">😂</li> -->
                 <!-- <li class="flick-10">🤣</li> -->
             </ul>
-
+        </div>
 <!-- 
             <div id="emoji-keyboard">
                 <div class="emojikey"></div>
