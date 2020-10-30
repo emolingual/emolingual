@@ -244,7 +244,7 @@ h1{
 
 .l-main div{
   text-align: center;
-  margin-left: 2em;
+  /* margin-left: 2em; */
 }
 
  /* textarea { */
@@ -404,6 +404,9 @@ textarea{
   width: 100%;
   position: fixed;/*←絶対位置*/
   bottom: 0; /*下に固定*/
+}
+.sliders{
+  margin-bottom: 5em;
 }
 /* slider */
 .slidecontainer{
