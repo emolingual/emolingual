@@ -238,6 +238,9 @@ h1{
   margin-left: 1em;
   font-size: 2em;
 }
+.l-main{
+  float: left;
+}
 
 .l-main div{
   text-align: center;
